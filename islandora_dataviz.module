@@ -1,0 +1,42 @@
+<?php
+
+/**
+ * @file
+ * Short file description here.
+ *
+ * Long description here.
+ */
+
+module_load_include('inc', 'islandora', 'includes/solution_packs');
+
+/**
+ * Implements hook_menu().
+ */
+function islandora_dataviz_menu() {
+
+  $items = array();
+  $items['islandora_dataviz/get_viz'] = array(
+    'title' => 'Get Dataviz',
+    'description' => 'Get Dataviz',
+    'page callback' => 'getDataviz',
+    'access callback' => TRUE,
+    'file' => 'includes/DatavizController.php',
+    'type' => MENU_CALLBACK,
+  );
+
+  return $items;
+}
+
+/**
+ * Implements hook_help().
+ */
+function islandora_dataviz_help($path, $arg) {
+
+  switch ($path) {
+    case 'admin/help#ens':
+
+      // Return a line-break version of the README.
+      $readme = file_get_contents(drupal_get_path('module', 'islandora_dataviz') . '/README.md');
+      return nl2br($readme);
+  }
+}

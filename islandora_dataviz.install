@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Install and uninstall code for islandora_dataviz.
+ *
+ */
+
+
+/**
+ * Implements hook_install().
+ */
+function islandora_dataviz_install() {
+
+  // Do some things on install, like setting the module weight.
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function islandora_dataviz_uninstall() {
+
+  // Do some things on uninstall, like deleting all variables.
+}

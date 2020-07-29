@@ -1,0 +1,8 @@
+name = islandora_dataviz
+description = "Islandora DataViz"
+package = Islandora
+core = 7.x
+dependencies[] = context
+dependencies[] = context_addassets
+dependencies[] = context_ui
+dependencies[] = islandora_context

@@ -40,3 +40,21 @@ function islandora_dataviz_help($path, $arg) {
       return nl2br($readme);
   }
 }
+
+
+
+/**
+ * Send Object info to js for reference
+ */
+function islandora_dataviz_islandora_view_object(AbstractObject $object) {
+  $pid = "unknown";
+  if (isset($object)) {
+    $pid = $object->id;
+  }
+
+  drupal_add_js(array('islandora_dataviz' =>
+    array('pid' => $pid
+    )
+  ), array('type' => 'setting')
+  );
+}

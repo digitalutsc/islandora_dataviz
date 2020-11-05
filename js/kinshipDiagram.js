@@ -94,7 +94,7 @@ function showKinshipDiagram(treeData){
                     if (d.data.birthyear != "?" && d.data.deathyear != "?"){
                         content += `<br>` + d.data.birthyear +` - ` + d.data.deathyear
                     }
-                    else {content += `<br> Dates UNKNOWN`}
+                    else {content += `<br> Dates unknown`}
 
                     content += `<br> ID: ` + d.data.id + `<br></span>`;
                     if (d.data.class.includes("showPortrait") == true && d.data.class.includes("hasPortrait") == true){

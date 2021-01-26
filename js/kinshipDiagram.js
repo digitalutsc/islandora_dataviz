@@ -98,8 +98,8 @@ function showKinshipDiagram(treeData){
 
                     content += `<br> ID: ` + d.data.id + `<br></span>`;
                     if (d.data.class.includes("showPortrait") == true && d.data.class.includes("hasPortrait") == true){
-                        // basePath =  `https://dragomans.digitalscholarship.utsc.utoronto.ca/sites/default/files/`
-                        basePath = `portraits/`
+
+			basePath = "http://dragomans.digitalscholarship.utsc.utoronto.ca/sites/default/files/dragomans/images/";
                         content += `<img src="`+ basePath + d.data.portrait+`" width=150 height=200> <br>`}
 
                     if (d.data.class.includes("portraitUnconfirmed") == true){content += "<br> Note: Presumed portrait for " + d.data.name}
@@ -511,8 +511,7 @@ function showKinshipDiagram(treeData){
                 .attr("xlink:href",  function(d) {
                     if (d.data.isUnion) return;
                     if (d.data.class.includes("dragoman") == true){
-                        basePath =  "https://dragomans.digitalscholarship.utsc.utoronto.ca/sites/default/files/"
-                        // basePath = "portraits/"
+			basePath = "http://dragomans.digitalscholarship.utsc.utoronto.ca/sites/default/files/dragomans/images/";
                         return href = basePath + "icon_dragoman_hat.png";}})
                 .attr("x", function(d) { return nodeX + 97;})
                 .attr("y", function(d) {return nodeY + 5;})
@@ -523,8 +522,7 @@ function showKinshipDiagram(treeData){
                 .attr("xlink:href",  function(d) {
                     if (d.data.isUnion) return;
                     if (d.data.class.includes("hasPortrait") == true && d.data.class.includes("showPortrait")== true){
-                        basePath =  "https://dragomans.digitalscholarship.utsc.utoronto.ca/sites/default/files/"
-                        // basePath = "portraits/"
+			basePath = "http://dragomans.digitalscholarship.utsc.utoronto.ca/sites/default/files/dragomans/images/";
                          return href= basePath + "icon_portrait.png";}})
                 .attr("x", function(d) { return nodeX - 25;})
                 .attr("y", function(d) { return nodeY + 5;})
@@ -679,14 +677,12 @@ function showKinshipDiagram(treeData){
         // legend for portrait and dragoman icon
         if (data.start == kinDiagram3){
             svg.append("image").attr("x", noteX + 295).attr("y", textY + 3*alignment).attr("width",icon_width).attr("height",icon_height).attr("xlink:href", function (d) {
-                // basePath =  `https://dragomans.digitalscholarship.utsc.utoronto.ca/sites/default/files/`
-                basePath = `portraits/`
+		basePath = "http://dragomans.digitalscholarship.utsc.utoronto.ca/sites/default/files/dragomans/images/";
                 return basePath + "icon_portrait.png";});
             svg.append("text").attr("x", noteX + 295 + icon_width).attr("y", textY + 4*alignment).text("Portrait").style("font-size", "15px").attr("alignment-baseline","middle").style('fill', 'black');
         }
         svg.append("image").attr("x", noteX+ 295).attr("y", textY + 5*alignment).attr("width",icon_width).attr("height",icon_height).attr("xlink:href", function (d) {
-            // basePath =  `https://dragomans.digitalscholarship.utsc.utoronto.ca/sites/default/files/`
-            basePath = `portraits/`
+	    basePath = "http://dragomans.digitalscholarship.utsc.utoronto.ca/sites/default/files/dragomans/images/";
             return basePath + "icon_dragoman_hat.png";});
         svg.append("text").attr("x", noteX + 295 + icon_width).attr("y", textY + 6*alignment).text("Dragoman").style("font-size", "15px").attr("alignment-baseline","middle").style('fill', 'black');
 

@@ -6,14 +6,14 @@
 //showNetworkDiagram(data)
 
 function showNetworkDiagram(data){
-    
+
     width = 1120;
     height = 900;
 
     var svg = d3.select("#viz")
         .append("svg")
         .attr("width", width)
-        .attr("height", height);  
+        .attr("height", height);
 
     var color = d3.scaleOrdinal()                                                       //set node color below
         .domain(["Venetian Colonial","Venetian Citizen", "Ottoman", "Unknown","Other"])
@@ -65,7 +65,7 @@ function showNetworkDiagram(data){
           .attr("class", "nodes")
         .selectAll("g")
         .data(graph.nodes)
-        .enter().append("g")    
+        .enter().append("g")
 
       var circles = node.append("circle")
           .attr("r", function(d){return 4*d.node_size})                                 // set node radius here
@@ -74,8 +74,8 @@ function showNetworkDiagram(data){
                 div.transition()
                     .duration(300)
                     .style("opacity", .8);
-                div.html( "Family: " + d.label + "<br/>" + 
-                        "# of dragoman: " + d.node_size + "<br/>" + 
+                div.html( "Family: " + d.label + "<br/>" +
+                        "# of dragoman: " + d.node_size + "<br/>" +
                         "Subjecthood: "+ d.subjecthood)
                     .style("left", (d3.event.pageX + 20) + "px")
                     .style("top", (d3.event.pageY - 20) + "px")
@@ -156,7 +156,7 @@ function showNetworkDiagram(data){
         lineX = 15,
         lineY = circleY-7*alignment,
         lineTextX = lineX + 30,
-        lineTextY = lineY + 5;  
+        lineTextY = lineY + 5;
 
     // nationality
     svg.append("circle").attr("cx",circleX).attr("cy",circleY-5*alignment).attr("r", 6).style("fill", "#5983D9");
@@ -181,14 +181,20 @@ function showNetworkDiagram(data){
     svg.append("text").attr("x", circleX-10).attr("y", lineY-4*alignment).text("Marriage ties: ").style("font-size", "15px").attr("alignment-baseline","middle");
 
     // Node size
-    svg.append("circle").attr("cx", circX).attr("cy", circY-4*(alignment+9)).attr("r",1*4).style("fill", "#bdbdbd");
+    /*svg.append("circle").attr("cx", circX).attr("cy", circY-4*(alignment+9)).attr("r",1*4).style("fill", "#bdbdbd");
     svg.append("circle").attr("cx", circX).attr("cy", circY-3*(alignment+9)).attr("r",2*4).style("fill", "#bdbdbd");
     svg.append("circle").attr("cx", circX).attr("cy", circY-2*(alignment+9)).attr("r",3*4).style("fill", "#bdbdbd");
     svg.append("circle").attr("cx", circX).attr("cy", circY-1*(alignment+9)).attr("r",4*4).style("fill", "#bdbdbd");
+
     svg.append("text").attr("x", circTextX).attr("y", circTextY-4*(alignment+9)).text("1 dragoman in family").style("font-size", "15px").attr("alignment-baseline","middle");
     svg.append("text").attr("x", circTextX).attr("y", circTextY-3*(alignment+9)).text("2 dragomans in family").style("font-size", "15px").attr("alignment-baseline","middle");
     svg.append("text").attr("x", circTextX).attr("y", circTextY-2*(alignment+9)).text("3 dragomans in family").style("font-size", "15px").attr("alignment-baseline","middle");
-    svg.append("text").attr("x", circTextX).attr("y", circTextY-1*(alignment+9)).text("4 dragomans in family").style("font-size", "15px").attr("alignment-baseline","middle");
+    svg.append("text").attr("x", circTextX).attr("y", circTextY-1*(alignment+9)).text("4 dragomans in family").style("font-size", "15px").attr("alignment-baseline","middle");*/
+
+    // For ticket https://redmine.digital.utsc.utoronto.ca/issues/9413
+    svg.append("circle").attr("cx", circX).attr("cy", circY-4*(alignment+9)).attr("r",1*4).style("fill", "#bdbdbd");
+    svg.append("text").attr("x", circTextX).attr("y", circTextY-4*(alignment+9)).text("one or more marriage ties").style("font-size", "15px").attr("alignment-baseline","middle");
+
     svg.append("text").attr("x", circleX-10).attr("y", circY-5*(alignment+7)).text("# of dragomans by node size: ").style("font-size", "15px").attr("alignment-baseline","middle");
 
 

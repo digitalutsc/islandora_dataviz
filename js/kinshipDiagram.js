@@ -102,7 +102,7 @@ function showKinshipDiagram(treeData) {
           if (d.data.class.includes("showPortrait") == true && d.data.class.includes("hasPortrait") == true) {
 
             basePath = "http://dragomans.digitalscholarship.utsc.utoronto.ca/sites/default/files/dragomans/images/";
-            content += `<img src="` + basePath + d.data.portrait + `" width=150 height=200> <br>`
+            content += `<a target="_blank" href="` + basePath + d.data.portrait + `"><img src="` + basePath + d.data.portrait + `" width=150 height=200></a><br>`
           }
 
           if (d.data.class.includes("portraitUnconfirmed") == true) {
@@ -498,6 +498,7 @@ function showKinshipDiagram(treeData) {
         })
 
       // Enter any new nodes at the parent's previous position.
+      var timeout;
       var nodeEnter = node.enter().append('g')
         .attr('class', 'node')
         .attr("transform", function (d) {
@@ -505,7 +506,16 @@ function showKinshipDiagram(treeData) {
         })
         .on('click', click)
         .on('mouseover', tip.show)
-        .on('mouseout', tip.hide)
+        //.on('mouseout', tip.hide)
+        .on('mouseout', function(d) {
+          var context = this;
+          var args = [].slice.call(arguments);
+          args.push(this);
+          clearTimeout(timeout);
+          timeout = setTimeout(function() {
+            tip.hide.apply(context, args);
+          }, 2000);
+        })
         .attr('visible', true);
 
       // Add Circle for the nodes

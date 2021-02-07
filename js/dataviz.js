@@ -21,7 +21,11 @@ jQuery(window).load(function(){
                 data = "/sites/default/files/dragomans/data/kinship2.js";
                 showKinshipDiagram(data);
        } else if (object_pid == "dragomans:64") {
-                viewerDiv.empty().append('<div height="700" id="kingship-diagram-1" width="800"></div>');
+                viewerDiv.empty().append('<div height="700" id="kingship-diagram-1" width="800"></div>' +
+                  '<div class="row">' +
+                  '<div class="column"><img alt="kingship_diagram3b" src="https://dragomans.digitalscholarship.utsc.utoronto.ca/sites/default/files/dragomans/images/kinship_diagram_3b.png" width="95%"></div>' +
+                  '<div class="column"><img alt="kingship_diagram3d" src="https://dragomans.digitalscholarship.utsc.utoronto.ca/sites/default/files/dragomans/images/kinship_diagram_3d.png" width="100%"></div>' +
+                  '</div>');
                 data = "/sites/default/files/dragomans/data/kinship3.js";
                 showKinshipDiagram(data);
         }

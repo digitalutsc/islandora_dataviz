@@ -69,3 +69,25 @@
         border-width: 1px;
         border-radius: 10px;
     }
+
+* {
+  box-sizing: border-box;
+}
+
+.column {
+  float: left;
+  width: 50%;
+  padding: 5px;
+  border: 0.5px solid black;
+  height: 245px;
+  background: white;
+}
+
+/* Clearfix (clear floats) */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+

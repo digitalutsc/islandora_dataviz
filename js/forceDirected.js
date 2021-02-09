@@ -48,7 +48,7 @@ function showNetworkDiagram(data){
                 div.transition()
                     .duration(300)
                     .style("opacity", .9);
-                div.html("Marriage ties: " + d.weight)
+                div.html("Marriage tie" /*+ d.weight*/)
                     .style("left", (d3.event.pageX + 5) + "px")
                     .style("top", (d3.event.pageY - 20) + "px")
                     .style("width", "90px")
@@ -172,16 +172,21 @@ function showNetworkDiagram(data){
     svg.append("text").attr("x", circleX-10).attr("y", circleY-6*alignment).text("Subjecthood by color: ").style("font-size", "15px").attr("alignment-baseline","middle");
 
     // marriage link
-    svg.append("line").attr("x1",lineX).attr("y1",lineY-3*alignment).attr("x2",lineX+lineLength).attr("y2",lineY-3*alignment).attr("stroke-width", 1*3.8).attr("stroke", "#bdbdbd");
+    /*svg.append("line").attr("x1",lineX).attr("y1",lineY-3*alignment).attr("x2",lineX+lineLength).attr("y2",lineY-3*alignment).attr("stroke-width", 1*3.8).attr("stroke", "#bdbdbd");
     svg.append("line").attr("x1",lineX).attr("y1",lineY-2*alignment).attr("x2",lineX+lineLength).attr("y2",lineY-2*alignment).attr("stroke-width", 2*3.8).attr("stroke", "#bdbdbd");
     svg.append("line").attr("x1",lineX).attr("y1",lineY-1*alignment).attr("x2",lineX+lineLength).attr("y2",lineY-1*alignment).attr("stroke-width", 3*3.8).attr("stroke", "#bdbdbd");
     svg.append("text").attr("x", lineTextX).attr("y", lineTextY-3*alignment).text("1 marriage").style("font-size", "15px").attr("alignment-baseline","middle");
     svg.append("text").attr("x", lineTextX).attr("y", lineTextY-2*alignment).text("2 marriages").style("font-size", "15px").attr("alignment-baseline","middle");
     svg.append("text").attr("x", lineTextX).attr("y", lineTextY-1*alignment).text("3 marriages").style("font-size", "15px").attr("alignment-baseline","middle");
+    */
     svg.append("text").attr("x", circleX-10).attr("y", lineY-4*alignment).text("Marriage ties: ").style("font-size", "15px").attr("alignment-baseline","middle");
+    
+    // For ticket https://redmine.digital.utsc.utoronto.ca/issues/9413
+    svg.append("line").attr("x1",lineX).attr("y1",lineY-3*alignment).attr("x2",lineX+lineLength).attr("y2",lineY-3*alignment).attr("stroke-width", 1*3.8).attr("stroke", "#bdbdbd");
+    svg.append("text").attr("x", lineTextX).attr("y", lineTextY-3*alignment).text("one or more marriage ties").style("font-size", "15px").attr("alignment-baseline","middle");
 
     // Node size
-    /*svg.append("circle").attr("cx", circX).attr("cy", circY-4*(alignment+9)).attr("r",1*4).style("fill", "#bdbdbd");
+    svg.append("circle").attr("cx", circX).attr("cy", circY-4*(alignment+9)).attr("r",1*4).style("fill", "#bdbdbd");
     svg.append("circle").attr("cx", circX).attr("cy", circY-3*(alignment+9)).attr("r",2*4).style("fill", "#bdbdbd");
     svg.append("circle").attr("cx", circX).attr("cy", circY-2*(alignment+9)).attr("r",3*4).style("fill", "#bdbdbd");
     svg.append("circle").attr("cx", circX).attr("cy", circY-1*(alignment+9)).attr("r",4*4).style("fill", "#bdbdbd");
@@ -189,11 +194,11 @@ function showNetworkDiagram(data){
     svg.append("text").attr("x", circTextX).attr("y", circTextY-4*(alignment+9)).text("1 dragoman in family").style("font-size", "15px").attr("alignment-baseline","middle");
     svg.append("text").attr("x", circTextX).attr("y", circTextY-3*(alignment+9)).text("2 dragomans in family").style("font-size", "15px").attr("alignment-baseline","middle");
     svg.append("text").attr("x", circTextX).attr("y", circTextY-2*(alignment+9)).text("3 dragomans in family").style("font-size", "15px").attr("alignment-baseline","middle");
-    svg.append("text").attr("x", circTextX).attr("y", circTextY-1*(alignment+9)).text("4 dragomans in family").style("font-size", "15px").attr("alignment-baseline","middle");*/
+    svg.append("text").attr("x", circTextX).attr("y", circTextY-1*(alignment+9)).text("4 dragomans in family").style("font-size", "15px").attr("alignment-baseline","middle");
 
     // For ticket https://redmine.digital.utsc.utoronto.ca/issues/9413
-    svg.append("circle").attr("cx", circX).attr("cy", circY-4*(alignment+9)).attr("r",1*4).style("fill", "#bdbdbd");
-    svg.append("text").attr("x", circTextX).attr("y", circTextY-4*(alignment+9)).text("one or more marriage ties").style("font-size", "15px").attr("alignment-baseline","middle");
+    //svg.append("circle").attr("cx", circX).attr("cy", circY-4*(alignment+9)).attr("r",1*4).style("fill", "#bdbdbd");
+    //svg.append("text").attr("x", circTextX).attr("y", circTextY-4*(alignment+9)).text("one or more marriage ties").style("font-size", "15px").attr("alignment-baseline","middle");
 
     svg.append("text").attr("x", circleX-10).attr("y", circY-5*(alignment+7)).text("# of dragomans by node size: ").style("font-size", "15px").attr("alignment-baseline","middle");
 

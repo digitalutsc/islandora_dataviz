@@ -101,8 +101,10 @@ function showKinshipDiagram(treeData) {
           content += `<br> ID: ` + d.data.id + `<br></span>`;
           if (d.data.class.includes("showPortrait") == true && d.data.class.includes("hasPortrait") == true) {
 
-            basePath = "http://dragomans.digitalscholarship.utsc.utoronto.ca/sites/default/files/dragomans/images/";
-            content += `<a target="_blank" href="` + basePath + d.data.portrait + `"><img src="` + basePath + d.data.portrait + `" width=150 height=200></a><br>`
+            basePath = "https://dragomans.digitalscholarship.utsc.utoronto.ca/sites/default/files/dragomans/images/";
+            site_url = "https://dragomans.digitalscholarship.utsc.utoronto.ca/islandora/object/";
+   		console.log(d); 
+	   content += `<a target="_blank" href="` + site_url + d.data.PID + `"><img src="` + basePath + d.data.portrait + `" width=150 height=200></a><br>`
           }
 
           if (d.data.class.includes("portraitUnconfirmed") == true) {

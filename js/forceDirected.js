@@ -75,7 +75,7 @@ function showNetworkDiagram(data){
                     .duration(300)
                     .style("opacity", .8);
                 div.html( "Family: " + d.label + "<br/>" +
-                        "# of dragoman: " + d.node_size + "<br/>" +
+                        "# of dragoman: " + d.node_size + ((d.node_size === 4) ? " or more " : "") + "<br/>" +
                         "Subjecthood: "+ d.subjecthood)
                     .style("left", (d3.event.pageX + 20) + "px")
                     .style("top", (d3.event.pageY - 20) + "px")
@@ -194,7 +194,7 @@ function showNetworkDiagram(data){
     svg.append("text").attr("x", circTextX).attr("y", circTextY-4*(alignment+9)).text("1 dragoman in family").style("font-size", "15px").attr("alignment-baseline","middle");
     svg.append("text").attr("x", circTextX).attr("y", circTextY-3*(alignment+9)).text("2 dragomans in family").style("font-size", "15px").attr("alignment-baseline","middle");
     svg.append("text").attr("x", circTextX).attr("y", circTextY-2*(alignment+9)).text("3 dragomans in family").style("font-size", "15px").attr("alignment-baseline","middle");
-    svg.append("text").attr("x", circTextX).attr("y", circTextY-1*(alignment+9)).text("4 dragomans in family").style("font-size", "15px").attr("alignment-baseline","middle");
+    svg.append("text").attr("x", circTextX).attr("y", circTextY-1*(alignment+9)).text("4 or more dragomans in family").style("font-size", "15px").attr("alignment-baseline","middle");
 
     // For ticket https://redmine.digital.utsc.utoronto.ca/issues/9413
     //svg.append("circle").attr("cx", circX).attr("cy", circY-4*(alignment+9)).attr("r",1*4).style("fill", "#bdbdbd");

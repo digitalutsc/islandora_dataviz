@@ -173,8 +173,12 @@ function showKinshipDiagram(treeData) {
 
     // find root node for kinship 1,2,3
     if (data.start == kinDiagram1) {
-      root.x0 = screen_width * 0.35;
-      root.y0 = screen_height * 0.6;
+      //root.x0 = screen_width * 0.35;
+      //root.y0 = screen_height * 0.6;
+      
+      // For ticket #9413
+      root.x0 = screen_width * 0.55;
+      root.y0 = screen_height * 0.2;
     }
     if (data.start == kinDiagram2) {
       root.x0 = screen_width * 0.59;
@@ -216,7 +220,10 @@ function showKinshipDiagram(treeData) {
     function uncollapseFor1() {
       uncollapse(all_nodes.find(n => n.id == "I0087"));
 
-      uncollapse(all_nodes.find(n => n.id == "I0079"));
+      //uncollapse(all_nodes.find(n => n.id == "I0079"));
+      // For ticket #9413, unique implementation of uncollapse function for Natalie requested to showing Marcantonio's two wifes
+      uncollapseI0097(all_nodes.find(n => n.id == "I0079"));
+
       uncollapse(all_nodes.find(n => n.id == "I0081"));
       uncollapse(all_nodes.find(n => n.id == "I0102"));
     }
@@ -282,6 +289,70 @@ function showKinshipDiagram(treeData) {
         }
       );
     }
+
+    /**
+     * For ticket #9413, unique implement for Natalie requested to show Marcantonio's two wifes
+     * @param d
+     * @param make_roots
+     */
+    function uncollapseI0097(d, make_roots) {
+      if (d == undefined) return;
+
+      var collapsed_neighbors = d.neighbors.filter(n => !n.visible);
+      collapsed_neighbors.forEach(
+        n => {
+
+          if (n.id === "F0031") {
+            // collect neighbor data
+            n.neighbors = getNeighbors(n);
+            // tag visible
+            n.visible = true;
+            // if child, make connection
+            if (d._children.includes(n)) {
+              d.children.push(n);
+              d._children.remove(n);
+            }
+            // if parent, make connection
+            if (n._children.includes(d)) {
+              n.children.push(d);
+              n._children.remove(d);
+              // insert root nodes if flag is set
+              if (make_roots & !d.inserted_roots.includes(n)) {
+                d.inserted_roots.push(n);
+              }
+            }
+            // if union, uncollapse the union
+            if (n.data.isUnion) {
+              uncollapse(n, true);
+            }
+            // save neighbor handle in clicked node
+            d.inserted_nodes.push(n);
+          }
+        }
+      )
+      // make sure this step is done only once
+      if (!make_roots) {
+        var add_root_nodes = n => {
+          // add previously inserted root nodes (partners, parents)
+          n.inserted_roots.forEach(p => dag.children.push(p));
+          // add previously inserted connections (circles)
+          n.inserted_connections.forEach(
+            arr => {
+              // check existence to prevent double entries
+              // which will cause crashes
+              if (arr[0]._children.includes(arr[1])) {
+                arr[0].children.push(arr[1]);
+                arr[0]._children.remove(arr[1]);
+              }
+            }
+          )
+          // repeat with all inserted nodes
+          n.inserted_nodes.forEach(add_root_nodes)
+        };
+        add_root_nodes(d);
+      }
+    }
+
 
     // uncollapse a node
     function uncollapse(d, make_roots) {
